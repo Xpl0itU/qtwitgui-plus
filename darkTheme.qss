@@ -1,0 +1,232 @@
+    /*global defaults*/
+    *{
+    background-color: rgb(36,36, 36);
+    alternate-background-color: rgb(66, 66, 66);
+    selection-background-color: rgb(109,109,109);
+    selection-color: rgb(36,36, 36);
+    color: #d7d7d7;
+    }
+    /*global disabled*/
+    *:disabled{
+    color: #707070;
+    }
+    /*pushbuttons & combobox*/
+    QPushButton, QComboBox {
+    margin: 0;
+    border-width: 4px;
+    border-image: url(:/images/style/button-normal.png) 5 5 5 5 stretch stretch;
+    color: #d7d7d7;
+    min-width: 75px;
+    }
+    QPushButton:hover, QComboBox:hover {
+    border-width: 4px;
+    border-image: url(:/images/style/button-prelight.png) 5 5 5 5 stretch stretch;
+    color: #d7d7d7;
+    }
+    QPushButton:pressed, QComboBox:pressed{
+    border-width: 4px;
+    border-image: url(:/images/style/button-active-prelight.png) 5 5 5 5 stretch stretch;
+    }
+    QPushButton:disabled, QComboBox:pressed{
+    border-width: 4px;
+    border-image: url(:/images/style/button-inactive.png) 5 5 5 5 stretch stretch;
+    color: #707070;
+    }
+    QComboBox::drop-down
+    {
+    border-image: url(:/images/style/arrow-down.png);
+    }
+    QComboBox QAbstractItemView {
+    padding-left: 3px;
+    }
+
+    /*scroll areas*/
+    QAbstractScrollArea{
+    alternate-background-color: rgb(66,66,66);
+    background-color: rgb(71,71,71);
+    }
+    /* column headers*/
+    QHeaderView::section {
+    margin: 1px;
+    padding-left: 5;
+    border-image: url(:/images/style/list-header.png) 5 5 5 5 stretch stretch;
+    }
+    /*scrollbars*/
+    QScrollBar:vertical
+    {
+    margin: 17px 0 17px 0;
+    border-image: url(:/images/style/trough-scrollbar-vert.png) 10 0 10 0 stretch stretch;
+    }
+    QScrollBar::handle:vertical
+    {
+    border-width: 1px;
+    border-image: url(:/images/style/slider-vert.png) 0 0 0 0 stretch stretch;
+    image: url(:/images/style/grip-vert.png);
+    min-height: 20px;
+    }
+    QScrollBar::add-line:vertical
+    {
+    border-image: url(:/images/style/stepper-down.png);
+    height: 15px;
+    subcontrol-origin: margin;
+    }
+    QScrollBar::add-line:vertical:hover
+    {
+    border-image: url(:/images/style/stepper-down-prelight.png);
+    height: 15px;
+    subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:vertical
+    {
+    border-image: url(:/images/style/stepper-up.png);
+    height: 15px;
+    subcontrol-origin: margin;;
+    }
+    QScrollBar::sub-line:vertical:hover
+    {
+    border-image: url(:/images/style/stepper-up-prelight.png);
+    height: 15px;
+    subcontrol-origin: margin;;
+    }
+    QScrollBar::add-page:vertical, QScrollBar::sub-page:vertical {
+    background: none;
+    }
+    QScrollBar:horizontal
+    {
+    border-image: url(:/images/style/trough-scrollbar-horiz.png) 0 5 0 5 stretch stretch;
+    margin: 0px 17px 0px 17px;
+    }
+    QScrollBar::handle:horizontal
+    {
+    border-width: 1px;
+    border-image: url(:/images/style/slider-horiz.png) 0 1 0 1 stretch stretch;
+    image: url(:/images/style/grip-horiz.png);
+    min-width: 20px;
+    }
+    QScrollBar::add-line:horizontal
+    {
+    border-image: url(:/images/style/stepper-right.png);
+    width: 15px;
+    subcontrol-origin: margin;
+    }
+    QScrollBar::add-line:horizontal:hover
+    {
+    border-image: url(:/images/style/stepper-right-prelight.png);
+    width: 15px;
+    subcontrol-origin: margin;
+    }
+    QScrollBar::sub-line:horizontal
+    {
+    border-image: url(:/images/style/stepper-left.png);
+    }
+    QScrollBar::sub-line:horizontal:hover
+    {
+    border-image: url(:/images/style/stepper-left-prelight.png);
+    }
+    QScrollBar::add-page:horizontal, QScrollBar::sub-page:horizontal
+    {
+    background: none;
+    }
+    /* qframe borders*/
+    QFrame
+    {
+    /*border: 1px solid #C4C4C3;*/
+    border: 0;
+    }
+    /*QLineEdit*/
+    QLineEdit, QSpinBox
+    {
+    border-radius: 8px;
+    background-color: rgb(71,71,71);
+    padding-left: 5;
+    padding-right: 5;
+    }
+    QLineEdit:disabled, QSpinBox:disabled
+    {
+    border-radius: 8px;
+    background-color: rgb(50, 50, 50);
+    }
+    /*spinbox*/
+    QSpinBox
+    {
+    padding-right: 15px;
+    }
+
+    QSpinBox::up-button {
+    subcontrol-origin: border;
+    subcontrol-position: top right; /* position at the top right corner */
+    width: 16px;
+    border-image: url(:/images/style/stepper-up.png) 1;
+    border-width: 1px;
+    }
+    QSpinBox::up-button:hover
+    {
+    border-image: url(:/images/style/stepper-up-prelight.png) 1;
+    }
+    QSpinBox::up-button:pressed,
+    QSpinBox::up-arrow:disabled,
+    QSpinBox::up-arrow:off
+    {
+    border-image: url(:/images/style/stepper-up.png) 1;
+    }
+    QSpinBox::down-button
+    {
+    subcontrol-origin: border;
+    subcontrol-position: bottom right; /* position at bottom right corner */
+    width: 16px;
+    border-image: url(:/images/style/stepper-down.png) 1;
+    border-width: 1px;
+    border-top-width: 0;
+    }
+    QSpinBox::down-button:hover {
+    border-image: url(:/images/style/stepper-down-prelight.png) 1;
+    }
+    QSpinBox::down-button:pressed,
+    QSpinBox::down-arrow:disabled,
+    QSpinBox::down-arrow:off {
+    border-image: url(:/images/style/stepper-down.png) 1;
+    }
+    QTabWidget::pane { /* The tab widget frame */
+    border-left: 1px solid rgb(18,18,18);
+    border-right: 1px solid rgb(18,18,18);
+    border-bottom: 1px solid rgb(18,18,18);
+    }
+    QTabWidget::tab-bar {
+    left: 5px; /* move to the right by 5px */
+    }
+
+    QTabBar::tab {
+    border-image: url(:/images/style/tab-top-active.png);
+    border: 2px solid #C4C4C3;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    min-width: 18ex;
+    padding: 2px;
+    }
+
+    QTabBar::tab:selected,
+    QTabBar::tab:hover {
+    border-image: url(:/images/style/tab-top.png);
+    }
+
+    QTabBar::tab:!selected
+    {
+    margin-top: 2px; /* make non-selected tabs look smaller */
+    }
+
+/*progress bar*/
+QProgressBar {
+    border: 2px solid grey;
+    border-radius: 9px;
+        text-align: center;
+        border-image: url(:/images/style/trough-progressbar-horiz.png);
+ }
+
+QProgressBar::chunk {
+        border-radius: 9px;
+        border-image: url(:/images/style/progressbar-horiz.png);
+ }
+
+QGraphicsView{
+background-color: rgb(36,36, 36);
+}
