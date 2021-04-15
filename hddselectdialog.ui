@@ -53,7 +53,7 @@
         <string>Rescan only the partitions in this list</string>
        </property>
        <property name="text">
-        <string>ReScan</string>
+        <string>Rescan</string>
        </property>
       </widget>
      </item>

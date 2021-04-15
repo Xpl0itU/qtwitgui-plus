@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 #include <malloc.h>
 #else//windows and osx doesnt have memalign, and the image conversion API says it wants aligned memory
 void *memalign( size_t size, int align )
@@ -503,7 +503,7 @@ QPixmap GC_Game::BannerImage( int height )
 #ifdef Q_WS_LINUX
     //qDebug() << "deleting buffer with free()";
     free( bitmapdata );
-#elif defined Q_WS_MAC
+#elif defined Q_OS_MAC
     //qDebug() << "deleting buffer with aligned_free()";
     aligned_free( bitmapdata );
 #else//not linux or mac.  must be windows

@@ -13,11 +13,11 @@ HDDSelectDialog::HDDSelectDialog( QWidget *parent ) : QDialog( parent ), ui( new
     ui->treeWidget->setHeaderHidden( false );
 
     QFontMetrics fm( fontMetrics() );
-    ui->treeWidget->header()->resizeSection( 0, fm.width( QString( 24, 'W' ) ) );//path
-    ui->treeWidget->header()->resizeSection( 1, fm.width( "WWWWW" ) );//#games
-    ui->treeWidget->header()->resizeSection( 2, fm.width( "WWWWWWW" ) );//size
-    ui->treeWidget->header()->resizeSection( 3, fm.width( "WWWWWWW" ) );//split
-    ui->treeWidget->header()->resizeSection( 4, fm.width( "WWWWW" ) );//source
+    ui->treeWidget->header()->resizeSection( 0, fm.horizontalAdvance( QString( 24, 'W' ) ) );//path
+    ui->treeWidget->header()->resizeSection( 1, fm.horizontalAdvance( "WWWWW" ) );//#games
+    ui->treeWidget->header()->resizeSection( 2, fm.horizontalAdvance( "WWWWWWW" ) );//size
+    ui->treeWidget->header()->resizeSection( 3, fm.horizontalAdvance( "WWWWWWW" ) );//split
+    ui->treeWidget->header()->resizeSection( 4, fm.horizontalAdvance( "WWWWW" ) );//source
 
     oktoRequestNextLIST_LLL = true;
     alreadyAskingForPassword = false;
@@ -169,7 +169,7 @@ void HDDSelectDialog::on_pushButton_find_clicked()
     QFileInfoList list = QDir::drives();
 
 #else
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     QDir dir( "/Volumes" );
 #else
     QDir dir( "/media" );

@@ -23,6 +23,7 @@
 #ifndef CUSTOMMDIITEM_H
 #define CUSTOMMDIITEM_H
 
+#include <QtGui>
 #include <QObject>
 #include <QMdiSubWindow>
 
@@ -41,7 +42,7 @@ class CustomMdiItem : public QMdiSubWindow
 {
     Q_OBJECT
 public:
-	CustomMdiItem( QWidget * parent = 0, Qt::WindowFlags flags = 0, const QString &windowTitle = QString(), bool deleteOnClose = true );
+    CustomMdiItem( QWidget * parent = 0, Qt::WindowFlags flags = Qt::WindowFlags(), const QString &windowTitle = QString(), bool deleteOnClose = true );
 
     //provide a way to distinguish mdi windows
     QString GetTitle();

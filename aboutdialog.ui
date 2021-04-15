@@ -85,7 +85,7 @@
      <item>
       <widget class="QLabel" name="label_qtwitgui_giantpune">
        <property name="text">
-        <string>Written 2010 by giantpune.  This program comes with a GPLv3 license, with an additional &quot;Don't be a douche&quot; clause.  See the source code for more details. </string>
+        <string>Written 2010 by giantpune. This program comes with a GPLv3 license, with an additional &quot;Don't be a douche&quot; clause.  See the source code for more details. </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -107,7 +107,7 @@
    <item row="1" column="1">
     <widget class="QLabel" name="label_qtwitgui_url">
      <property name="text">
-      <string notr="true">http://code.google.com/p/qtwitgui/</string>
+      <string notr="true">https://github.com/Xpl0itU/qtwitgui-plus</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>

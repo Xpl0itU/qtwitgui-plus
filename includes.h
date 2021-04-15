@@ -18,6 +18,7 @@
 #include <QQueue>
 #include <QRegExp>
 #include <QSettings>
+#include <QString>
 #include <QtDebug>
 #include <QTimer>
 #include <QtWidgets>

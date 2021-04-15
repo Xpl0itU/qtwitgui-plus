@@ -16,13 +16,13 @@ WiiTDBWindow::WiiTDBWindow(QWidget *parent) : QWidget(parent), ui(new Ui::WiiTDB
 
     QFontMetrics fm( fontMetrics() );
     //search tab
-    int min = fm.width( ui->label_searchPlayers->text() );
-    min = MAX( min, fm.width( ui->label_searchRating->text() ) );
-    min = MAX( min, fm.width( ui->label_searchTitle->text() ) );
-    min = MAX( min, fm.width( ui->label_searchID->text() ) );
-    min = MAX( min, fm.width( ui->label_searchType->text() ) );
-    min = MAX( min, fm.width( ui->label_searchWifiPlayers->text() ) );
-    min = MAX( min, fm.width( ui->label_searchSynopsis->text() ) );
+    int min = fm.horizontalAdvance( ui->label_searchPlayers->text() );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchRating->text() ) );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchTitle->text() ) );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchID->text() ) );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchType->text() ) );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchWifiPlayers->text() ) );
+    min = MAX( min, fm.horizontalAdvance( ui->label_searchSynopsis->text() ) );
     min += 20;
     ui->label_searchPlayers->setMinimumWidth( min );
     ui->label_searchWifiPlayers->setMinimumWidth( min );
@@ -35,13 +35,13 @@ WiiTDBWindow::WiiTDBWindow(QWidget *parent) : QWidget(parent), ui(new Ui::WiiTDB
 
     //search result list
     ui->treeWidget->sortItems( 1, Qt::AscendingOrder );//sort the name column in alphabetical order
-    ui->treeWidget->header()->resizeSection( 0, fm.width( "WWWWWWW" ) );//id
-    ui->treeWidget->header()->resizeSection( 1, fm.width( QString( 22, 'W' ) ) );//name
-    ui->treeWidget->header()->resizeSection( 2, fm.width( "WW" ) );//#p
-    ui->treeWidget->header()->resizeSection( 3, fm.width( "WW" ) );//#wifi
-    ui->treeWidget->header()->resizeSection( 4, fm.width( "WWWWWWWW" ) );//rating
-    ui->treeWidget->header()->resizeSection( 5, fm.width( "WWWWWWW" ) );//type
-    ui->treeWidget->header()->resizeSection( 6, fm.width( QString( 22, 'W' ) ) );//accessories
+    ui->treeWidget->header()->resizeSection( 0, fm.horizontalAdvance( "WWWWWWW" ) );//id
+    ui->treeWidget->header()->resizeSection( 1, fm.horizontalAdvance( QString( 22, 'W' ) ) );//name
+    ui->treeWidget->header()->resizeSection( 2, fm.horizontalAdvance( "WW" ) );//#p
+    ui->treeWidget->header()->resizeSection( 3, fm.horizontalAdvance( "WW" ) );//#wifi
+    ui->treeWidget->header()->resizeSection( 4, fm.horizontalAdvance( "WWWWWWWW" ) );//rating
+    ui->treeWidget->header()->resizeSection( 5, fm.horizontalAdvance( "WWWWWWW" ) );//type
+    ui->treeWidget->header()->resizeSection( 6, fm.horizontalAdvance( QString( 22, 'W' ) ) );//accessories
 
 	connect( wiiTDB, SIGNAL( SendError( const QString&, const QString &) ),
 			 this, SLOT( ReceiveErrorFromWiiTDB( const QString&, const QString &) ) );

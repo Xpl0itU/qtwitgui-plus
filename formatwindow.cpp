@@ -12,9 +12,9 @@ FormatWindow::FormatWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Format
 
 
     QFontMetrics fm( fontMetrics() );
-    ui->treeWidget->header()->resizeSection( 0, fm.width( QString( 18, 'W' ) ) );//location
-    ui->treeWidget->header()->resizeSection( 1, fm.width( "WWWWW" ) );//GiB
-    ui->treeWidget->header()->resizeSection( 2, fm.width( "WWWWWWW" ) );//WBFS status
+    ui->treeWidget->header()->resizeSection( 0, fm.horizontalAdvance( QString( 18, 'W' ) ) );//location
+    ui->treeWidget->header()->resizeSection( 1, fm.horizontalAdvance( "WWWWW" ) );//GiB
+    ui->treeWidget->header()->resizeSection( 2, fm.horizontalAdvance( "WWWWWWW" ) );//WBFS status
 
 #ifndef Q_OS_WIN
     QSettings s( settingsPath, QSettings::IniFormat );
@@ -86,7 +86,7 @@ void FormatWindow::GetPartitionList( const QStringList &list )
 //get a line from wwt's output and figure out where it goes in the tree
 void FormatWindow::AddItemToTree( const QString &part )
 {
-    QStringList sections = part.split( " ", QString::SkipEmptyParts );
+    QStringList sections = part.split( " ", Qt::SkipEmptyParts );
     if( sections.size() != 5 )
     {
         qDebug() << "sections.size() != 5" << sections;
@@ -95,7 +95,7 @@ void FormatWindow::AddItemToTree( const QString &part )
     QString path = sections.at( 4 );
     QString sizeStr = sections.at( 3 );
     if( ( !path.startsWith( "/dev/s" )
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         && !path.startsWith( "/dev/rdisk" )
 #endif
         ) || sizeStr == "0" )

@@ -38,7 +38,7 @@ class UnzipPrivate;
 class QIODevice;
 class QFile;
 class QDir;
-class QStringList;
+//class QStringList;
 class QString;
 
 

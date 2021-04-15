@@ -17,7 +17,7 @@ AboutDialog::AboutDialog(QWidget *parent, const QString &qtwitguiVersion, const 
     ui->label_wiitdb_games_text->setText( wiitdbGames.isEmpty() ? unk : wiitdbGames );
 
     ui->label_qtwitgui_url->setOpenExternalLinks( true );
-    ui->label_qtwitgui_url->setText( "<a href=\"http://code.google.com/p/qtwitgui/\">http://code.google.com/p/qtwitgui/</a>" );
+    ui->label_qtwitgui_url->setText( "<a href=\"https://github.com/Xpl0itU/qtwitgui-plus\">https://github.com/Xpl0itU/qtwitgui-plus</a>" );
 
     ui->label_wiimms_url->setOpenExternalLinks( true );
     ui->label_wiimms_url->setText( "<a href=\"http://wit.wiimm.de/\">http://wit.wiimm.de/</a>" );

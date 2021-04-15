@@ -243,7 +243,7 @@ void WitHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
     {
 	case witListLLLHDD:
 	{
-	    QStringList parts = stdStr.split( "\n", QString::SkipEmptyParts );
+        QStringList parts = stdStr.split( "\n", Qt::SkipEmptyParts );
 
 	    bool ok = false;
 	    QList<QTreeWidgetItem *> games = StringListToGameList( parts, &ok );
@@ -275,7 +275,7 @@ void WitHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
 	    bool isDataPartition = false;
 	    int foundIos = 0;
 
-	    QStringList list = gameInfo.split("\n", QString::SkipEmptyParts );
+        QStringList list = gameInfo.split("\n", Qt::SkipEmptyParts );
 	    foreach( QString str, list )
 	    {
 		str = str.trimmed();
@@ -345,7 +345,7 @@ void WitHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
 		    str = str.simplified();
 
 		    //split the string into parts at each space
-		    QStringList parts = str.split(" ", QString::SkipEmptyParts );
+            QStringList parts = str.split(" ", Qt::SkipEmptyParts );
 
 		    partitionOffsets << "** 0x" + parts.at( 5 ) +" **";
 		}
@@ -363,7 +363,7 @@ void WitHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
 	    int dashes = stdStr.indexOf( "-------------" );
 	    int start = stdStr.indexOf( "\n", dashes ) + 1;
 	    QString fileListing = stdStr.mid( start, stdStr.indexOf( "ISO Memory Map:" ) - start );
-	    QStringList files = fileListing.split( "\n", QString::SkipEmptyParts );
+        QStringList files = fileListing.split( "\n", Qt::SkipEmptyParts );
 
 	    emit SendGameInfo( type, idStr, nameStr, foundIos, regionInt, files, partitionOffsets, trucha );
 	}
@@ -677,7 +677,7 @@ bool WitHandler::ReadAttributes()
 #ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
     if( list.isEmpty() )
     {
 	qDebug() << "list.isEmpty() ( read attributes )";
@@ -732,9 +732,9 @@ bool WitHandler::ReadAttributes()
 	    {
 		WitOptionAttr newAttr;
 		newAttr.name = name;
-		newAttr.attributes = attr.split( " ", QString::SkipEmptyParts );;
+        newAttr.attributes = attr.split( " ", Qt::SkipEmptyParts );;
 		newAttr.option = opt;
-		newAttr.extensions = ext.split( " ", QString::SkipEmptyParts );
+        newAttr.extensions = ext.split( " ", Qt::SkipEmptyParts );
 		if( newAttr.extensions.isEmpty() )
 		    newAttr.extensions << QString();
 
@@ -818,7 +818,7 @@ bool WitHandler::ReadVersion()
 #ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
     if( list.isEmpty() )
     {
 	qDebug() << "list.isEmpty()" << __FUNCTION__;
@@ -917,7 +917,7 @@ QStringList WitHandler::FileType( QStringList files )
 #ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
     if( list.size() != files.size() )
     {
 	qDebug() << "wrong size ( FileType )";

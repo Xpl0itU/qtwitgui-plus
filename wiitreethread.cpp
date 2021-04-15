@@ -10,7 +10,7 @@ WiiTreeThread::WiiTreeThread( QObject *parent ) : QThread( parent )
 #ifdef Q_OS_WIN
     monoFont = QFont( "Courier New", QApplication::font().pointSize() );
 #else
-    #ifdef Q_WS_MAC
+    #ifdef Q_OS_MAC
 	monoFont = QFont( "Courier New", QApplication::font().pointSize() - 1 );
     #else
 	monoFont = QFont( "Courier New", QApplication::font().pointSize() - 1, QFont::Bold );

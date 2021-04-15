@@ -44,7 +44,7 @@ GameWindow::GameWindow( QWidget *parent, const QString &game, const QList<QTreeW
 
 	//make sure the name column is wide enough
     ui->treeWidget->header()->resizeSection( 0, 300 );
-    ui->treeWidget->header()->resizeSection( 1, QFontMetrics( monoFont ).width( "** 0xf820000 **" ) + 10 );
+    ui->treeWidget->header()->resizeSection( 1, QFontMetrics( monoFont ).horizontalAdvance( "** 0xf820000 **" ) + 10 );
 
 	//connect the wiitreethread to this main window so we can read the output
     connect( wiithread , SIGNAL( SendProgress( int ) ), ui->progressBar, SLOT( setValue( int ) ) );

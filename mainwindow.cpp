@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     pFlowIsOpen = false;
     alreadyAskingForPassword = false;
     ui->setupUi( this );
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
     ui->actionOpen_DVD_r->setEnabled( false );//needs the listing of DVD drives fixed in fsinfo.cpp
 #endif
 
@@ -472,7 +472,7 @@ void MainWindow::ShowLogWindow()
 		return;
     }
 
-    CustomMdiItem *mdiItem = new CustomMdiItem( ui->mdiArea, 0, tr( "Log" ), false );
+    CustomMdiItem *mdiItem = new CustomMdiItem( ui->mdiArea, Qt::Widget, tr( "Log" ), false );
     mdiItem->type = mdiLog;
     mdiItem->setWidget( logWindow );
     mdiItem->show();
@@ -815,10 +815,6 @@ void MainWindow::on_actionOpenGame_triggered()
 {
     FileFolderDialog dialog( this );
     dialog.setNameFilter( "*.iso *.wbfs *.ciso *.wdf *.wia" );
-
-#if defined (Q_WS_MAC) || defined (Q_OS_WIN)
-    dialog.setOption( QFileDialog::DontUseNativeDialog );
-#endif
 
     if ( !dialog.exec() )
 		return;

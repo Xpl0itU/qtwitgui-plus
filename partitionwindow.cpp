@@ -21,12 +21,12 @@ PartitionWindow::PartitionWindow( QWidget *parent ) : QMainWindow( parent ), ui(
     ui->treeWidget->sortItems( GAME_NAME_COLUMN, Qt::AscendingOrder );
 
     QFontMetrics fm( fontMetrics() );
-    ui->treeWidget->header()->resizeSection( GAME_ID_COLUMN, fm.width( "WWWWWWWWW" ) );//id
-    ui->treeWidget->header()->resizeSection( GAME_NAME_COLUMN, fm.width( QString( 22, 'W' ) ) );//name
-    ui->treeWidget->header()->resizeSection( GAME_SIZE_COLUMN, fm.width( "WWWWW" ) );//size
-    ui->treeWidget->header()->resizeSection( GAME_REGION_COLUMN, fm.width( "WWWWW" ) );//region
-    ui->treeWidget->header()->resizeSection( GAME_TYPE_COLUMN, fm.width( "WWWWWWW" ) );//type
-    ui->treeWidget->header()->resizeSection( GAME_PARTITIONS_COLUMN, fm.width( "WWWWW" ) );//# partitions
+    ui->treeWidget->header()->resizeSection( GAME_ID_COLUMN, fm.horizontalAdvance( "WWWWWWWWW" ) );//id
+    ui->treeWidget->header()->resizeSection( GAME_NAME_COLUMN, fm.horizontalAdvance( QString( 22, 'W' ) ) );//name
+    ui->treeWidget->header()->resizeSection( GAME_SIZE_COLUMN, fm.horizontalAdvance( "WWWWW" ) );//size
+    ui->treeWidget->header()->resizeSection( GAME_REGION_COLUMN, fm.horizontalAdvance( "WWWWW" ) );//region
+    ui->treeWidget->header()->resizeSection( GAME_TYPE_COLUMN, fm.horizontalAdvance( "WWWWWWW" ) );//type
+    ui->treeWidget->header()->resizeSection( GAME_PARTITIONS_COLUMN, fm.horizontalAdvance( "WWWWW" ) );//# partitions
 
 
     QSettings s( settingsPath, QSettings::IniFormat );

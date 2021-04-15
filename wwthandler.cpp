@@ -244,8 +244,8 @@ void WwtHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
     {
 	case wwtFind:
 		{
-			QStringList parts = stdStr.split( "\n", QString::SkipEmptyParts );
-#ifdef Q_WS_MAC//mac version prints out more than just the list we want, so remove all entries that dont start with "/dev/"
+            QStringList parts = stdStr.split( "\n", Qt::SkipEmptyParts );
+#ifdef Q_OS_MAC//mac version prints out more than just the list we want, so remove all entries that dont start with "/dev/"
 			int s = parts.size();
 			QStringList filtered;
 			for( int i = 0; i < s; i++ )
@@ -260,8 +260,8 @@ void WwtHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
 		break;
 	case wwtFind_long:
 		{
-			QStringList parts = stdStr.split( "\n", QString::SkipEmptyParts );
-#ifdef Q_WS_MAC//mac version prints out more than just the list we want, so remove all entries that dont start with "CHAR"
+            QStringList parts = stdStr.split( "\n", Qt::SkipEmptyParts );
+#ifdef Q_OS_MAC//mac version prints out more than just the list we want, so remove all entries that dont start with "CHAR"
 			int s = parts.size();
 			QStringList filtered;
 			for( int i = 0; i < s; i++ )
@@ -283,7 +283,8 @@ void WwtHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
 		break;
 	case wwtFormat:
 		{
-			stdStr.remove( 0xC );//IDK where this comes from, but there is a byte in the wwt output that makes no sense to me.  just delete it
+        QChar d (0xC);
+            stdStr.remove(d);//IDK where this comes from, but there is a byte in the wwt output that makes no sense to me.  just delete it
 			emit SendStdOut( stdStr );
 			//emit SendJobDone( wwtFormat );
 		}
@@ -438,7 +439,7 @@ bool WwtHandler::ReadVersion()
 #ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
     if( list.isEmpty() )
     {
 		qWarning() << "list.isEmpty()" << __FUNCTION__;

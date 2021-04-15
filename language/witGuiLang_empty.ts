@@ -16,7 +16,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Written 2010 by giantpune.  This program comes with a GPLv3 license, with an additional &quot;Don&apos;t be a douche&quot; clause.  See the source code for more details. </source>
+        <source>Written 2010 by giantpune. This program comes with a GPLv3 license, with an additional &quot;Don&apos;t be a douche&quot; clause.  See the source code for more details. </source>
         <translation type="unfinished"></translation>
     </message>
     <message>

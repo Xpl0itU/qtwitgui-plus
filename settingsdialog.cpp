@@ -48,7 +48,7 @@ SettingsDialog::SettingsDialog( QWidget *parent ) : QDialog( parent ), ui( new U
     ui->checkBox_runasRoot->setChecked( s.value( "enabled", false ).toBool() );
     ui->groupBox_rootMessages->setEnabled( ui->checkBox_runasRoot->isChecked() );
     ui->lineEdit_rootReqStr->setText( s.value( "requestString",
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
                                                "Password:"
 #else
                                                "[sudo] password for"
@@ -201,11 +201,11 @@ void SettingsDialog::on_pushButton_wiitdbPath_clicked()
 void SettingsDialog::ResizeButtons()
 {
     QFontMetrics fm( fontMetrics() );
-    int max = fm.width( ui->pushButton_coverPath->text() );
-    max = MAX( max, fm.width( ui->pushButton_titlesPath->text() ) );
-    max = MAX( max, fm.width( ui->pushButton_wiitdbPath->text() ) );
-    max = MAX( max, fm.width( ui->pushButton_wit->text() ) );
-    max = MAX( max, fm.width( ui->pushButton_wwt->text() ) );
+    int max = fm.horizontalAdvance( ui->pushButton_coverPath->text() );
+    max = MAX( max, fm.horizontalAdvance( ui->pushButton_titlesPath->text() ) );
+    max = MAX( max, fm.horizontalAdvance( ui->pushButton_wiitdbPath->text() ) );
+    max = MAX( max, fm.horizontalAdvance( ui->pushButton_wit->text() ) );
+    max = MAX( max, fm.horizontalAdvance( ui->pushButton_wwt->text() ) );
 
     max += 30;
     ui->pushButton_coverPath->setMinimumWidth( max );

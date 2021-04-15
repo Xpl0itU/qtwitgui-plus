@@ -23,7 +23,7 @@ bool FsInfo::Check()
     QProcess p;
 
     //check that we have the program to convert windows paths to proper cygwin paths
-    p.start( "cygpath -v" );
+    p.startCommand( "cygpath -v" );
     if( !p.waitForStarted() )
     {
 		qCritical() << "failed to start cygpath ( check )";
@@ -175,7 +175,7 @@ QString FsInfo::GetFilesystem( QString path )
 
     p.start( "wmic", QStringList() << "/output:stdout" << "/interactive:off" << "/locale:ms_409" <<\
 			 "logicaldisk" << "where" << "DeviceID=\'" + drive + ":\'" << "get" << "filesystem" );
-#elif defined Q_WS_MAC
+#elif defined Q_OS_MAC
     p.start( "diskutil", QStringList() << "info" << path );
 #else
     //try statfs first as it is the fastest.  but its descriptors are less than descriptive for ext variants
@@ -222,7 +222,7 @@ QString FsInfo::GetFilesystem( QString path )
 
     QString output = p.readAll();
     output.remove( "\r" );
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
 #ifdef Q_OS_WIN
     if( !list.contains( "FileSystem  " ) || list.size() != 2 )
     {
@@ -232,7 +232,7 @@ QString FsInfo::GetFilesystem( QString path )
     QString fs = list.at( 1 );
     fs = fs.simplified();
     return fs;
-#elif defined Q_WS_MAC
+#elif defined Q_OS_MAC
     int size = list.size();
     for( int i = 0; i < size; i++ )
     {
@@ -281,7 +281,7 @@ QStringList FsInfo::GetDvdDrives()
 
 #ifdef Q_OS_WIN
     QProcess p;
-    p.start( "listDvd" );
+    p.startCommand( "listDvd" );
     if( !p.waitForStarted( 5000 ) )
     {
 		qCritical() << "FsInfo::GetDvdDrives() failed to start";
@@ -300,9 +300,9 @@ QStringList FsInfo::GetDvdDrives()
     }
     QString output = p.readAll();
     output.remove( "\r" );
-    QStringList list = output.split( "\n", QString::SkipEmptyParts );
+    QStringList list = output.split( "\n", Qt::SkipEmptyParts );
     return list;
-#elif defined Q_WS_MAC//TODO...
+#elif defined Q_OS_MAC//TODO...
     //vmware + osx + my dvd drives + burned wii games dont really work out to well.
     //for now, just don't do anything.  somebody that knows macs can fix this and submit a patch
     return QStringList();

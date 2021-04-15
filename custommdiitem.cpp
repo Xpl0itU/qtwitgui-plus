@@ -2,7 +2,7 @@
 #include "custommdiitem.h"
 
 CustomMdiItem::CustomMdiItem( QWidget * parent, Qt::WindowFlags flags, const QString &windowTitle, bool deleteOnClose )
-	: QMdiSubWindow( parent, flags )
+    : QMdiSubWindow( parent, flags )
 {
     title = windowTitle;
 

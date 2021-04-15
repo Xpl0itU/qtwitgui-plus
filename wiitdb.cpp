@@ -1,5 +1,5 @@
 #include "wiitdb.h"
-#ifndef Q_WS_MAC
+#ifndef Q_OS_MAC
 #include "unzip/unzip.h"
 #endif
 #include "includes.h"
@@ -72,7 +72,7 @@ bool WiiTDB::LoadFile( const QString &name )
     }
     else if( name.endsWith( ".zip", Qt::CaseInsensitive ) )
     {
-#ifdef Q_WS_MAC
+#ifdef Q_OS_MAC
         emit SendError( tr("WiiTDB Error"), tr("Zip files are not supported in the OSx version of this program yet") );
         return false;
 #else
@@ -619,7 +619,7 @@ bool WiiTDB::CheckRegEx( const QString &text, const QRegExp &rx )
     if( !rx.isValid() )
 	return text.contains( rx.pattern(), Qt::CaseInsensitive );
 
-    return text.contains( rx );
+    return text.contains(rx.pattern());
 }
 
 bool WiiTDB::CheckPlayerRule( int num, int cmpType, int cmpval )
