@@ -176,7 +176,7 @@ void MainWindow::CheckWit()
 		{
 			if( WitHandler::ReadAttributes() )
 			{
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
                 if( !FsInfo::Check() )
                 {
                     setAcceptDrops( false );
@@ -189,7 +189,7 @@ void MainWindow::CheckWit()
                     setWindowTitle( QString( PROGRAM_NAME ) + "  :  " + WitHandler::GetVersionString() );
                     ui->statusBar->showMessage( tr( "Ready" ) );
                     setAcceptDrops( true );
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
                 }
 #endif
 			}
@@ -524,7 +524,7 @@ void MainWindow::ReceiveAllPartitionInfo( const QList<QTreeWidgetItem *> &list )
 			qDebug() << "MEM LEAK - not deleted:" << item->text( 0 );
 		}
     }
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     int size = list.size();
     for( int i = 0; i < size; i++ )
     {
@@ -638,7 +638,7 @@ void MainWindow::OpenSelectedPartitions( const QList<QTreeWidgetItem *> &list )
 
     foreach( QTreeWidgetItem *item, list )
     {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         item->setText( 0, RemoveDriveLetter( item->text( 0 ) ) );
 #endif
         CustomMdiItem *found = findMdiChild( item->text( 0 ), mdiPartition );
@@ -694,7 +694,7 @@ void MainWindow::OpenSelectedPartitions( const QList<QTreeWidgetItem *> &list )
 			connect( w, SIGNAL( GameClicked( const QString & ) ), wiiTDBwindow, SLOT( LoadGameFromID( const QString & ) ) );
 
 		//mdiItem->show();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         QString key = RemoveDriveLetter( item->text( 0 ) );
 #else
         QString key = item->text( 0 );
@@ -816,7 +816,7 @@ void MainWindow::on_actionOpenGame_triggered()
     FileFolderDialog dialog( this );
     dialog.setNameFilter( "*.iso *.wbfs *.ciso *.wdf *.wia" );
 
-#if defined (Q_WS_MAC) || defined (Q_WS_WIN)
+#if defined (Q_WS_MAC) || defined (Q_OS_WIN)
     dialog.setOption( QFileDialog::DontUseNativeDialog );
 #endif
 

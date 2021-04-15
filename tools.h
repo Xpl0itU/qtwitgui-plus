@@ -77,9 +77,9 @@ extern QString warningColor;
 extern QString criticalColor;
 
 void SetupLog();
-void DebugHandler( QtMsgType type, const char *msg );
+void DebugHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg);
 
-#ifdef Q_WS_WIN//add the drive letter in windows
+#ifdef Q_OS_WIN//add the drive letter in windows
 QString RemoveDriveLetter( const QString &path );
 QString AddDriveLetter( const QString &path );
 #endif

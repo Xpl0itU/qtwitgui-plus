@@ -7,7 +7,7 @@ WiiTreeThread::WiiTreeThread( QObject *parent ) : QThread( parent )
     returnItem = new QTreeWidgetItem;
 
     nameFont = QApplication::font();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     monoFont = QFont( "Courier New", QApplication::font().pointSize() );
 #else
     #ifdef Q_WS_MAC

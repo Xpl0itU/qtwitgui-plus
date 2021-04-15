@@ -518,7 +518,7 @@ void GameCopyDialog::on_pushButton_destOther_clicked()
     FileFolderDialog dialog( this );
     dialog.setNameFilter( "*.iso *.wbfs *.ciso *.wdf *.wia" );
 
-#if defined (Q_WS_MAC) || defined (Q_WS_WIN)
+#if defined (Q_WS_MAC) || defined (Q_OS_WIN)
     dialog.setOption( QFileDialog::DontUseNativeDialog );
 #endif
 

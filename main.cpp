@@ -1,4 +1,4 @@
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include "mainwindow.h"
 #include "includes.h"
 #include "wiitdb.h"
@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE( resources );
 
     QApplication a(argc, argv);
-    settingsPath = QDesktopServices::storageLocation( QDesktopServices::HomeLocation ) + "/QtWitGui.ini";
+    settingsPath = QStandardPaths::StandardLocation( QStandardPaths::HomeLocation ) + "/QtWitGui.ini";
     SetupLog();
     qDebug().nospace() << "<b><text style=\"color:green\">" << PROGRAM_NAME << " r" << SVN_REV_STR << "</text></b>";
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     int ret = a.exec();
     delete wiiTDB;
     delete logWindow;
-#ifdef Q_WS_WIN    //on windows XP, wmic leaves behind a temp file ( 0 bytes ): just delete it
+#ifdef Q_OS_WIN    //on windows XP, wmic leaves behind a temp file ( 0 bytes ): just delete it
     if( QFile::exists( "./TempWmicBatchFile.bat" ) )
         QFile::remove( "./TempWmicBatchFile.bat" );
 #endif

@@ -27,7 +27,7 @@ GameWindow::GameWindow( QWidget *parent, const QString &game, const QList<QTreeW
     //lockTextOutput = false;
 
     //set a font for the output window.
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     QFont monoFont = QFont( "Courier New", QApplication::font().pointSize(), 55 );
 #else
     QFont monoFont = QFont( "Courier New", QApplication::font().pointSize() - 1, 55 );
@@ -635,7 +635,7 @@ void GameWindow::InsertText( const QString &s, const QString &c )
     QString textCopy = s;
 
     //replace all \r\n and \n with <br>
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     textCopy.replace( "\r\n", "<br>" );
 #endif
     textCopy.replace( "\n", "<br>" );

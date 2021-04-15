@@ -9,7 +9,7 @@
 #define	    NTFS_PUNE_MAGIC       0x65735546//all my NTFS return this ( created on XP x64 )
 #endif
 
-#ifdef Q_WS_WIN//keep a list of the dvd drive letters to exclude them from the partition-auto search
+#ifdef Q_OS_WIN//keep a list of the dvd drive letters to exclude them from the partition-auto search
 static QStringList dvdLetters;
 #endif
 
@@ -17,7 +17,7 @@ FsInfo::FsInfo(QObject *parent) :
 		QObject(parent)
 {
 }
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 bool FsInfo::Check()
 {
     QProcess p;
@@ -162,7 +162,7 @@ QString FsInfo::ToCygPath( const QString &winPath, bool *ok )
 QString FsInfo::GetFilesystem( QString path )
 {
     QProcess p;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     bool ok = false;
     QString drive = ToWinPath( path, &ok );
     int colon = drive.indexOf( ":" );
@@ -223,7 +223,7 @@ QString FsInfo::GetFilesystem( QString path )
     QString output = p.readAll();
     output.remove( "\r" );
     QStringList list = output.split( "\n", QString::SkipEmptyParts );
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if( !list.contains( "FileSystem  " ) || list.size() != 2 )
     {
 		qCritical() << "wrong output ( getfs )" << list;
@@ -279,7 +279,7 @@ QString FsInfo::GetFilesystem( QString path )
 QStringList FsInfo::GetDvdDrives()
 {
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     QProcess p;
     p.start( "listDvd" );
     if( !p.waitForStarted( 5000 ) )

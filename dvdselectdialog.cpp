@@ -42,7 +42,7 @@ void DvdSelectDialog::on_buttonBox_accepted()
     int size = selected.size();
     for( int i = 0; i < size; i++ )
     {
-#ifdef Q_WS_WIN//remove "helper" drive letters in windows
+#ifdef Q_OS_WIN//remove "helper" drive letters in windows
         ret << RemoveDriveLetter( selected.at( i )->text() );
 #else
         ret << selected.at( i )->text();
@@ -67,7 +67,7 @@ void DvdSelectDialog::on_pushButton_refresh_clicked()
         QListWidgetItem *item = ui->listWidget->takeItem( 0 );
         delete item;
     }
-#ifdef Q_WS_WIN//add drive letters to the paths in windows
+#ifdef Q_OS_WIN//add drive letters to the paths in windows
     int size = dvds.size();
     for( int i = 0; i < size; i++ )
     {

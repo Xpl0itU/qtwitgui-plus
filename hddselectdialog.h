@@ -66,7 +66,7 @@ public slots:
 	void HandleWiimmsErrors( const QString &err, int id );
 	void GetWBFSPartitionList( const QStringList &list );
 	void GetPartitionInfo( const QList<QTreeWidgetItem *> &games, const QString &MibUsed );
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     void NeedToAskForPassword();
 #endif
 
@@ -74,7 +74,7 @@ signals:
 	void SendHDDList( const QList<QTreeWidgetItem *> & );//send all hdds
 	void SendSelectedPartition( const QList<QTreeWidgetItem *> &);//send selected hdds
 	void SendGamelistFor_1_Partition( const QString &, const QList<QTreeWidgetItem *> & );
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     void UserEnteredPassword();
 #endif
 

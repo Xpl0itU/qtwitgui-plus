@@ -11,7 +11,7 @@ public:
 
     static QString GetFilesystem( QString path );
     static QStringList GetDvdDrives();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //only used for windows stuff
     static bool Check();
 	static QString ToWinPath( const QString &cygPath, bool *ok );

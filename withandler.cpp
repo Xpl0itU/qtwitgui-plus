@@ -37,7 +37,7 @@ WitHandler::WitHandler( QObject *parent, bool root ) :QObject( parent )
     //create the pointer to the process used to run wit
     process = new QProcess( this );
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     // Add an environment variable to shut up the cygwin warning in windows
     //QStringList env = QProcess::systemEnvironment();//depreciated
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -88,7 +88,7 @@ void WitHandler::ReadyReadStdOutSlot()
 {
     //read text from wit
     QString curRead = process->readAllStandardOutput();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //get rid of stupid windows new lines
     curRead.replace( "\r\n", "\n" );
 #endif
@@ -166,7 +166,7 @@ void WitHandler::ReadyReadStdErrSlot()
     errStr += process->readAllStandardError();
 
     //qDebug() << "gotmessage err" << errStr;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //get rid of stupid windows new lines
     errStr.replace( "\r\n", "\n" );
 #endif
@@ -212,7 +212,7 @@ void WitHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
     //qDebug() << "wit finished:" << i << s << "job:" << witJob;
     if( i || s )
     {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 	if( i == 128 )
 	{
 	    emit SendFatalErr( tr( "Maybe cygwin1.dll is missing" ), witJob );
@@ -458,7 +458,7 @@ void WitHandler::ListLLL_HDD( const QString &path, int recurse, bool ignoreFst )
 {
     QString rDepth;
     QTextStream( &rDepth ) << "--rdepth=" << recurse;
-#ifdef Q_WS_WIN//remove the drive letter in windows
+#ifdef Q_OS_WIN//remove the drive letter in windows
     QStringList args = QStringList() << "LIST-LLL" << "--recurse" << RemoveDriveLetter( path ) << rDepth << "--sections";
 #else
     QStringList args = QStringList() << "LIST-LLL" << "--recurse" << path << rDepth << "--sections";
@@ -674,7 +674,7 @@ bool WitHandler::ReadAttributes()
     }
 
     QString output = p.readAll();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
     QStringList list = output.split( "\n", QString::SkipEmptyParts );
@@ -815,7 +815,7 @@ bool WitHandler::ReadVersion()
     }
 
     QString output = p.readAll();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
     QStringList list = output.split( "\n", QString::SkipEmptyParts );
@@ -914,7 +914,7 @@ QStringList WitHandler::FileType( QStringList files )
     }
 
     QString output = p.readAll();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
     QStringList list = output.split( "\n", QString::SkipEmptyParts );
@@ -926,7 +926,7 @@ QStringList WitHandler::FileType( QStringList files )
     QStringList ret;
     for( int i = 0; i < files.size(); i++ )
     {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         bool ok = false;
         QString cygPath = FsInfo::ToCygPath( files.at( i ), &ok );
         if( !ok || !list.at( i ).endsWith( cygPath ) )

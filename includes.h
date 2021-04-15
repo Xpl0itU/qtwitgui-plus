@@ -20,8 +20,8 @@
 #include <QSettings>
 #include <QtDebug>
 #include <QTimer>
-#include <QtGui>
-#include <QtGui/QMainWindow>
+#include <QtWidgets>
+#include <QtWidgets/QMainWindow>
 #include <QTreeWidget>
 #include <QTreeWidgetItem>
 #include <qpushbutton.h>

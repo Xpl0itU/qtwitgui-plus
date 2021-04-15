@@ -89,7 +89,7 @@ bool WiiTDB::LoadFile( const QString &name )
 	ec = uz.openArchive( name );
 	if (ec != UnZip::Ok)
 	{
-		emit SendError( tr("WiiTDB Error"), QString( "Failed to open archive: " ) + uz.formatError(ec).toAscii() );
+        emit SendError( tr("WiiTDB Error"), QString( "Failed to open archive: " ) + uz.formatError(ec).toLatin1() );
 		return false;
 	}
 
@@ -111,7 +111,7 @@ bool WiiTDB::LoadFile( const QString &name )
 	ec = uz.extractFile( "wiitdb.xml", &buf);
 	if (ec != UnZip::Ok)
 	{
-		emit SendError( tr("WiiTDB Error"), QString( "Extraction failed: " ) + uz.formatError(ec).toAscii() );
+        emit SendError( tr("WiiTDB Error"), QString( "Extraction failed: " ) + uz.formatError(ec).toLatin1() );
 		uz.closeArchive();
 		return false;
 	}

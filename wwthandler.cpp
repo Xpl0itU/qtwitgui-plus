@@ -18,7 +18,7 @@ WwtHandler::WwtHandler( QObject *parent, bool root ) :QObject( parent )
     //create the pointer to the process used to run wit
     process = new QProcess( this );
 
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     // Add an environment variable to shut up the cygwin warning in windows
     //QStringList env = QProcess::systemEnvironment();//depreciated
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
@@ -53,7 +53,7 @@ void WwtHandler::ReadyReadStdOutSlot()
 {
     //read text from wwt
     QString curRead = process->readAllStandardOutput();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //get rid of stupid windows new lines
     curRead.replace( "\r\n", "\n" );
 #endif
@@ -165,7 +165,7 @@ void WwtHandler::ReadyReadStdErrSlot()
     errStr += process->readAllStandardError();
 
     //qDebug() << "gotmessage err" << errStr;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     //get rid of stupid windows new lines
     errStr.replace( "\r\n", "\n" );
 #endif
@@ -205,7 +205,7 @@ void WwtHandler::ProcessFinishedSlot( int i, QProcess::ExitStatus s )
     //qDebug() << "wwt finished:" << i << s << "job:" << wwtJob;
     if( i || s )
     {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
 		if( i == 128 )
 		{
 			emit SendFatalErr( tr( "Maybe cygwin1.dll is missing" ), wwtJob );
@@ -435,7 +435,7 @@ bool WwtHandler::ReadVersion()
     }
 
     QString output = p.readAll();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     output.remove( "\r" );
 #endif
     QStringList list = output.split( "\n", QString::SkipEmptyParts );

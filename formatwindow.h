@@ -30,12 +30,12 @@ private slots:
 	void HandleWiimmsErrors( const QString &err, int id );
 	void GetPartitionList( const QStringList &list );
 	void FormatDone( const QString &text );
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     void NeedToAskForPassword();
 #endif
 
 signals:
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     void UserEnteredPassword();
 #endif
 };

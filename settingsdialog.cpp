@@ -25,7 +25,7 @@ SettingsDialog::SettingsDialog( QWidget *parent ) : QDialog( parent ), ui( new U
 {
     ui->setupUi( this );
     setWindowTitle( tr( "Settings" ) );
-#ifdef Q_WS_WIN//remove root settings for windows
+#ifdef Q_OS_WIN//remove root settings for windows
     QWidget *p = ui->Root;
     ui->stackedWidget->removeWidget( p );
     delete( p );
@@ -43,7 +43,7 @@ SettingsDialog::SettingsDialog( QWidget *parent ) : QDialog( parent ), ui( new U
     ui->lineEdit_wiitdbPath->setText( s.value( "wiitdb" ,"" ).toString() );
     ui->lineEdit_titlesTxt->setText( s.value( "titlesTxt" ,"" ).toString() );
     s.endGroup();
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     s.beginGroup( "root" );
     ui->checkBox_runasRoot->setChecked( s.value( "enabled", false ).toBool() );
     ui->groupBox_rootMessages->setEnabled( ui->checkBox_runasRoot->isChecked() );
@@ -83,7 +83,7 @@ SettingsDialog::SettingsDialog( QWidget *parent ) : QDialog( parent ), ui( new U
     ui->checkBox_ignoreFst->setChecked( s.value( "ignoreFst", false ).toBool() );
 
     QFont monoFont;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     monoFont = QFont( "Courier New", QApplication::font().pointSize() );
 #else
     monoFont = QFont( "Courier New", QApplication::font().pointSize() - 1 );
@@ -124,7 +124,7 @@ void SettingsDialog::on_pushButton_ok_clicked()
     s.setValue( "wiitdb", ui->lineEdit_wiitdbPath->text() );
     s.setValue( "titlesTxt", ui->lineEdit_titlesTxt->text() );
     s.endGroup();
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     s.beginGroup( "root" );
     s.setValue( "enabled", ui->checkBox_runasRoot->isChecked() );
     s.setValue( "requestString", ui->lineEdit_rootReqStr->text() );

@@ -38,7 +38,7 @@ HDDSelectDialog::HDDSelectDialog( QWidget *parent ) : QDialog( parent ), ui( new
 
     ignoreFst = s.value( "ignoreFst", false ).toBool();
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     bool root = s.value( "root/enabled" ).toBool();
     wit.SetRunAsRoot( root );
     wwt.SetRunAsRoot( root );
@@ -88,7 +88,7 @@ void HDDSelectDialog::AddPartitionsToList( const QList<QTreeWidgetItem *> &list 
 		bool found = false;
 		for( int j = 0; j < ui->treeWidget->topLevelItemCount(); j++ )
 		{
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
             if( list.at( i )->text( 0 ) == RemoveDriveLetter( ui->treeWidget->topLevelItem( j )->text( 0 ) ) )
 #else
 				if( list.at( i )->text( 0 ) == ui->treeWidget->topLevelItem( j )->text( 0 ) )
@@ -98,7 +98,7 @@ void HDDSelectDialog::AddPartitionsToList( const QList<QTreeWidgetItem *> &list 
 		if( !found )
 		{
 			QTreeWidgetItem *item = list.at( i )->clone();
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
             if( item->text( 4 ) == "wwt" )
                 item->setText( 0, AddDriveLetter( item->text( 0 ) ) );
 #endif
@@ -130,7 +130,7 @@ void HDDSelectDialog::reject()
     QDialog::reject();
 }
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 //wit/wwt has asked for a password
 void HDDSelectDialog::NeedToAskForPassword()
 {
@@ -165,7 +165,7 @@ void HDDSelectDialog::on_pushButton_find_clicked()
 		QTreeWidgetItem *it = lst.at( j );
 		delete it;
     }
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     QFileInfoList list = QDir::drives();
 
 #else
@@ -178,12 +178,12 @@ void HDDSelectDialog::on_pushButton_find_clicked()
     dir.setFilter( QDir::Dirs | QDir::NoDotAndDotDot | QDir::Hidden | QDir::NoSymLinks );
     QFileInfoList list = dir.entryInfoList();
 
-#endif//#ifdef Q_WS_WIN
+#endif//#ifdef Q_OS_WIN
     for( int i = 0; i < list.size(); ++i )
     {
 		QFileInfo fileInfo = list.at( i );
         if( PathIsIgnored( fileInfo.absoluteFilePath() )
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
             || FsInfo::IsDVDLetter( fileInfo.absoluteFilePath() )
 #endif
             )
@@ -297,7 +297,7 @@ void HDDSelectDialog::AddNewPartitionToList( const QString &path, const QString 
     item->setText( 4, source );
     if( source == "wwt" )
     {
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
         item->setText( 0, AddDriveLetter( item->text( 0 ) ) );
 #endif
 		item->setText( 5, "WBFS" );
@@ -361,7 +361,7 @@ void HDDSelectDialog::GetPartitionInfo( const QList<QTreeWidgetItem *> &games, c
 		ui->buttonBox->setEnabled( true );
 		unsetCursor();
     }
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     emit SendGamelistFor_1_Partition( RemoveDriveLetter( item->text( 0 ) ), games );
 #else
     emit SendGamelistFor_1_Partition( item->text( 0 ), games );

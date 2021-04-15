@@ -433,7 +433,7 @@ void PartitionWindow::CustomTreeWidgetContentmenu( const QPoint& pos )
 			gcTotalgames = selectedCount;
 			foreach( QTreeWidgetItem* item, ui->treeWidget->selectedItems() )
 			{
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
                 bool ok = false;
                 QString path = FsInfo::ToWinPath( item->text( 6 ), &ok );
                 if( !ok )
@@ -604,7 +604,7 @@ void PartitionWindow::UpdateFlagText()
 {
     QString fs = partition->text( 5 );
     QString flags;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     if( partition->text( 5 ) == "WBFS" )
     {
         bool ok = false;

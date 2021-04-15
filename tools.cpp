@@ -110,7 +110,7 @@ void SetupLog()
     logWindow = new QPlainTextEdit;
     logWindow->setReadOnly( true );
     QFont monoFont;
-#ifdef Q_WS_WIN
+#ifdef Q_OS_WIN
     monoFont = QFont( "Courier New", QApplication::font().pointSize() );
 #else
     monoFont = QFont( "Courier New", QApplication::font().pointSize() - 1 );
@@ -127,10 +127,10 @@ void SetupLog()
     s.endGroup();
 
     logWindow->setPalette( p );
-    qInstallMsgHandler( DebugHandler );
+    qInstallMessageHandler( DebugHandler );
 }
 
-void DebugHandler( QtMsgType type, const char *msg )
+void DebugHandler(QtMsgType type, const QMessageLogContext& context, const QString& msg)
 {
     bool needToScroll = logWindow->verticalScrollBar()->value() == logWindow->verticalScrollBar()->maximum();//if the text window is already showing the last line
     switch( type )
@@ -159,7 +159,7 @@ void DebugHandler( QtMsgType type, const char *msg )
 	logWindow->verticalScrollBar()->setValue( logWindow->verticalScrollBar()->maximum() );
 }
 
-#ifdef Q_WS_WIN//add the drive letter in windows
+#ifdef Q_OS_WIN//add the drive letter in windows
 QString RemoveDriveLetter( const QString &path )
 {
     QString ret = path;

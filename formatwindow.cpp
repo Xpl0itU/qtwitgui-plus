@@ -16,7 +16,7 @@ FormatWindow::FormatWindow(QWidget *parent) : QDialog(parent), ui(new Ui::Format
     ui->treeWidget->header()->resizeSection( 1, fm.width( "WWWWW" ) );//GiB
     ui->treeWidget->header()->resizeSection( 2, fm.width( "WWWWWWW" ) );//WBFS status
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
     QSettings s( settingsPath, QSettings::IniFormat );
     bool root = s.value( "root/enabled" ).toBool();
     wwt.SetRunAsRoot( root );
@@ -44,7 +44,7 @@ void FormatWindow::on_pushButton_done_clicked()
     QDialog::accept();
 }
 
-#ifndef Q_WS_WIN
+#ifndef Q_OS_WIN
 //wwt has asked for a password
 void FormatWindow::NeedToAskForPassword()
 {
@@ -114,7 +114,7 @@ void FormatWindow::AddItemToTree( const QString &part )
         {
             parent = ui->treeWidget->topLevelItem( i );
             location = tr( "Partition %1" ).arg( ui->treeWidget->topLevelItem( i )->childCount() + 1 );
-#ifdef Q_WS_WIN//add the drive letter in windows
+#ifdef Q_OS_WIN//add the drive letter in windows
             bool ok = false;
             QString letter = FsInfo::ToWinPath( path, &ok );
             if( ok && letter.endsWith( ":" ) )
