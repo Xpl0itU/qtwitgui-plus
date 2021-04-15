@@ -16,7 +16,7 @@
 #include <QObject>
 #include <QProcess>
 #include <QQueue>
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QSettings>
 #include <QString>
 #include <QtDebug>

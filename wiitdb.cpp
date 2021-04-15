@@ -532,9 +532,9 @@ QList< QTreeWidgetItem * >WiiTDB::Search( const QString &id, const QString &name
     QList< QTreeWidgetItem * >ret;
 
     //only do these conversions 1 time
-    QRegExp rxTitle( name, Qt::CaseInsensitive );
-    QRegExp rxID( id, Qt::CaseInsensitive );
-    QRegExp rxSynopsis( synopsisFilter, Qt::CaseInsensitive );
+    QRegularExpression rxTitle( name, QRegularExpression::CaseInsensitiveOption );
+    QRegularExpression rxID( id, QRegularExpression::CaseInsensitiveOption );
+    QRegularExpression rxSynopsis( synopsisFilter, QRegularExpression::CaseInsensitiveOption );
     bool okPlr = true;
     int plr = -1;
     if( !players.isEmpty() )
@@ -611,7 +611,7 @@ QList< QTreeWidgetItem * >WiiTDB::Search( const QString &id, const QString &name
     return ret;
 }
 
-bool WiiTDB::CheckRegEx( const QString &text, const QRegExp &rx )
+bool WiiTDB::CheckRegEx( const QString &text, const QRegularExpression &rx )
 {
     if( text.isEmpty() )
 	return false;

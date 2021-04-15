@@ -5,8 +5,7 @@ QT += core \
     gui \
     xml \
     network \
-    widgets \
-    core5compat
+    widgets
 TARGET = QtWitGui
 TEMPLATE = app
 DEFINES += PROGRAM_NAME='\\"${TARGET}\\"' \

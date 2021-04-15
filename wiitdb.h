@@ -99,7 +99,7 @@ private:
 	QMap<QString, bool> InputControllersFromGameElement( const QDomElement &parent );
 
     //check if text matches a qregex
-    bool CheckRegEx( const QString &text, const QRegExp &rx );
+    bool CheckRegEx( const QString &text, const QRegularExpression &rx );
 
     //check if a # of players falls within the searched rules
     bool CheckPlayerRule( int num, int cmpType, int cmpval );
